@@ -68,7 +68,7 @@ Valeu galera!
             print(f"Velocidade: {i} km/s")
             print(f"Distância percorrida: {distancia_percorrida} km")
 
-            # Ajusta o tempo de espera com base na velocidade
+         
             if i < 250000:
                 time.sleep(0.0001)  # Execução rápida para velocidades abaixo de 250.000 km/s
             elif i < 265000:
