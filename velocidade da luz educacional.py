@@ -70,11 +70,11 @@ Valeu galera!
 
          
             if i < 250000:
-                time.sleep(0.0001)  # Execução rápida para velocidades abaixo de 250.000 km/s
+                time.sleep(0.0001) 
             elif i < 265000:
-                time.sleep(0.001)   # Diminui a velocidade a partir de 250.000 km/s
+                time.sleep(0.001)   
             else:
-                time.sleep(1)     #  espera 1 segundo por iteração
+                time.sleep(1)     
 
             if i == 300000:
                 break
