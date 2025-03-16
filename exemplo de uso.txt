@@ -1,0 +1,14 @@
+Como Exportar Dados do Bookpage para CSV e Manipulá-los no Excel Online
+
+
+
+Com o Bookpage, você pode facilmente adicionar e organizar seus dados 
+em um formato de texto simples, mas também tem a
+ opção de exportar esses dados para um arquivo CSV.
+ O melhor de tudo é que, uma vez exportados para CSV,
+ você pode abrir e manipular os dados no Excel  para realizar análises,
+ criar gráficos e personalizar suas informações de forma prática e colaborativa.
+
+link para conversão:
+
+https://data.page/json/csv
