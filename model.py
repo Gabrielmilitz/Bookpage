@@ -67,7 +67,7 @@ class Bookpage:
             print("\033[1;32m" + "[6]" + "\033[0m" + " 🚪 Sair do programa")
 
             print("\033[1;34m" + "=" * 50 + "\033[0m")
-            print("\033[1;35m" + "      📚 Version 1.0".rjust(40) + "\033[0m")
+            print("\033[1;35m" + "      📚 Version 1.1".rjust(40) + "\033[0m")
             print("\033[1;35m" + "    @angelusdev".rjust(40) + "\033[0m")
             print("\033[1;35m" + "    gabrielmarinmilitz@gmail.com".rjust(40) + "\033[0m")
             print("\033[1;34m" + "=" * 50 + "\033[0m")
