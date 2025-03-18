@@ -1,103 +1,98 @@
+import os
 import json
 
-class Adicao:
+class Bookpage:
     def __init__(self):
-     
         self.lista = []
         self.respostas = {}
 
+    def limpar_tela(self):
+        os.system('cls' if os.name == 'nt' else 'clear')
+
     def adicionar_conteudo(self):
-        
-        usuario = input("O que você gostaria de adicionar ao Bookpage? ")
-        conteudo = input("Qual conteúdo gostaria de compartilhar com esse novo tópico? ")
+        usuario = input("\033[1;33m➡️  O que você gostaria de adicionar ao Bookpage? \033[0m")
+        conteudo = input("\033[1;33m➡️  Qual conteúdo gostaria de compartilhar com esse novo tópico? \033[0m")
 
-        
         if usuario not in self.lista:
-            if usuario not in self.respostas:
-                print("Conteúdo verificado: não existe")
-                self.lista.append(usuario)
-                self.respostas[usuario] = conteudo
-                print("O conteúdo foi armazenado com sucesso no seu Bookpage.")
-            else:
-                print("Este conteúdo já existe.")
+            print("\033[1;32m✔️  Conteúdo verificado: não existe\033[0m")
+            self.lista.append(usuario)
+            self.respostas[usuario] = conteudo
+            print("\033[1;32m✔️  O conteúdo foi armazenado com sucesso no seu Bookpage.\033[0m")
         else:
-            print("Este tópico já existe no Bookpage.")
+            print("\033[1;31m❌ Este tópico já existe no Bookpage.\033[0m")
 
+    def remover_conteudo(self):
+        escolha = input("\033[1;33m➡️  Qual item deseja remover? \033[0m")
+        if escolha in self.lista:
+            self.lista.remove(escolha)
+            self.respostas.pop(escolha, None)
+            print(f"\033[1;32m✔️  O item '{escolha}' foi removido com sucesso.\033[0m")
+        else:
+            print("\033[1;31m❌ Este item não existe no Bookpage.\033[0m")
 
-class Exibir:
-    def __init__(self, adicao):
-        
-        self.adicao = adicao
-        self.exibir_existente()
+    def exibir_conteudo(self):
+        if not self.lista:
+            print("\033[1;31m❌ O Bookpage está vazio.\033[0m")
+            return
 
-    def exibir_existente(self):
-        """
-        Menu interativo para visualizar, remover e exportar os dados.
-        """
+        print("\033[1;34m📚 Tópicos do Bookpage:\033[0m")
+        for i, item in enumerate(self.lista, 1):
+            print(f"{i}. {item}")
+
+    def exibir_detalhes(self):
+        exibir = input("\033[1;33m➡️  Digite um tópico do Bookpage para ver as informações: \033[0m")
+        if exibir in self.respostas:
+            print(f"\033[1;34m📖 Conteúdo de '{exibir}': {self.respostas[exibir]}\033[0m")
+        else:
+            print("\033[1;31m❌ Este tópico não existe no Bookpage.\033[0m")
+
+    def exportar_json(self):
+        dados = {"tópicos": self.lista, "conteúdos": self.respostas}
+        with open("bookpage.json", "w", encoding="utf-8") as file:
+            json.dump(dados, file, indent=4, ensure_ascii=False)
+            print("\033[1;32m✔️  Arquivo JSON exportado com sucesso.\033[0m")
+
+    def exibir_menu(self):
         while True:
-            print('''
-                ========================
-                BEM-VINDO AO BOOKPAGE 🟡
-                
-                (1) Exibir Bookpage ✅
-                (2) Remover item do Bookpage ✅
-                (3) Exibir conteúdo ✅
-                (4) Exportar Bookpage para JSON ✅
-                (5) Adicionar ao Bookpage ✅
-                (6) Sair do programa ✅
-                ========================
-                  Version 1.0
-                  @angelusdev 
-                  @gabrielmarinmilitz@gmail.com
-                
-            ''')
+            self.limpar_tela()
+            print("\033[1;36m" + "=" * 50 + "\033[0m")
+            print("\033[1;33m" + "📚 BEM-VINDO AO BOOKPAGE".center(50) + "\033[0m")
+            print("\033[1;36m" + "=" * 50 + "\033[0m")
 
-            try:
-                usuario = int(input("Digite uma das opções acima: "))
-            except ValueError:
-                print("Por favor, insira um número válido.")
-                continue
+            print("\033[1;32m" + "[1]" + "\033[0m" + " 📖 Exibir Bookpage")
+            print("\033[1;32m" + "[2]" + "\033[0m" + " ❌ Remover item do Bookpage")
+            print("\033[1;32m" + "[3]" + "\033[0m" + " 📚 Exibir conteúdo")
+            print("\033[1;32m" + "[4]" + "\033[0m" + " 📤 Exportar Bookpage para JSON")
+            print("\033[1;32m" + "[5]" + "\033[0m" + " ➕ Adicionar ao Bookpage")
+            print("\033[1;32m" + "[6]" + "\033[0m" + " 🚪 Sair do programa")
 
-            if usuario == 1:
-                print("Tópicos do Bookpage:", self.adicao.lista)
+            print("\033[1;34m" + "=" * 50 + "\033[0m")
+            print("\033[1;35m" + "      📚 Version 1.0".rjust(40) + "\033[0m")
+            print("\033[1;35m" + "    @angelusdev".rjust(40) + "\033[0m")
+            print("\033[1;35m" + "    gabrielmarinmilitz@gmail.com".rjust(40) + "\033[0m")
+            print("\033[1;34m" + "=" * 50 + "\033[0m")
 
-            elif usuario == 2:
-                escolha = input("Qual item deseja remover? ")
-                if escolha in self.adicao.lista:
-                    self.adicao.lista.remove(escolha)
-                    self.adicao.respostas.pop(escolha, None)
-                    print(f"O item '{escolha}' foi removido com sucesso.")
-                else:
-                    print("Este item não existe no Bookpage.")
+            opcao = input("\033[1;33m➡️  Escolha uma opção: \033[0m")
 
-            elif usuario == 3:
-                exibir = input("Digite um tópico do Bookpage para ver as informações: ")
-                if exibir in self.adicao.lista:
-                    print(f"Conteúdo de '{exibir}':", self.adicao.respostas[exibir])
-                else:
-                    print("Este tópico não existe no Bookpage.")
-
-            elif usuario == 4:
-                dados = {
-                    "x": self.adicao.lista,
-                    "y": self.adicao.respostas
-                }
-                with open("dados.json", "w", encoding="utf-8") as file:
-                    json.dump(dados, file, indent=4, ensure_ascii=False)
-                    print("Arquivo JSON exportado com sucesso.")
-
-            elif usuario == 5:
-                self.adicao.adicionar_conteudo()
-
-
-            elif usuario == 6:
-                print("Saindo do programa...")
+            if opcao == '1':
+                self.exibir_conteudo()
+            elif opcao == '2':
+                self.remover_conteudo()
+            elif opcao == '3':
+                self.exibir_detalhes()
+            elif opcao == '4':
+                self.exportar_json()
+            elif opcao == '5':
+                self.adicionar_conteudo()
+            elif opcao == '6':
+                print("\033[1;31m🚪 Saindo do programa... Até logo!\033[0m")
                 break
-
             else:
-                print("Opção inválida. Tente novamente.")
+                print("\033[1;31m❌ Opção inválida. Tente novamente.\033[0m")
 
+            input("\033[1;36m\nPressione ENTER para continuar...\033[0m")
 
-          
-
+if __name__ == '__main__':
+    app = Bookpage()
+    app.exibir_menu()
             
