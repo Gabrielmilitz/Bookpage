@@ -1,14 +1,11 @@
-from model import * 
-
-
+from model import *
 
 def main():
-   
-    adicao = Adicao()      
-    Exibir(adicao)        
-
+    
+    app = Bookpage()
+    app.exibir_menu()
 
 if __name__ == "__main__":
     main()
-            
+
 
