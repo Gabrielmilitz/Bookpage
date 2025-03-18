@@ -53,4 +53,3 @@ Finalizar:
 Para sair do programa, basta selecionar a opção (6) Sair do programa.
 Observações:
 Todos os dados são armazenados em memória enquanto o programa estiver em execução. Caso o programa seja encerrado, os dados serão perdidos, a menos que sejam exportados para o arquivo JSON.
-O arquivo JSON gerado pode ser usado para importar os dados de volta ao programa em uma futura execução, se desejado.
